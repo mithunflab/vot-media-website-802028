@@ -1,0 +1,246 @@
+<think>
+Alright, I need to generate a production-ready CSS file based on the user's requirements. The user wants to change the background and ensure the code is high-quality, professional, and follows modern design principles. They also mentioned responsiveness, TypeScript types, accessibility, and clean architecture.
+
+First, I'll start by setting up the basic structure of the CSS file. I'll include the DOCTYPE declaration and move on to the head section with meta tags for SEO and performance. Using a responsive viewport meta tag is essential for mobile-first design.
+
+Next, I'll think about the styling. The user wants a modern look, so I'll choose a clean, sans-serif font like Inter for readability. I'll set global styles for margins, padding, and box-sizing to ensure consistency across all elements.
+
+For the background, I'll use a subtle gradient to add depth without being distracting. I'll make sure the color scheme is professional, using CSS variables for easy maintenance. The primary colors will be a dark blue for headers and a light blue for accents, with a white background for content areas.
+
+I'll structure the HTML using semantic tags like header, nav, main, section, and article to improve accessibility and SEO. The navigation will be responsive, using a flexbox layout that collapses into a hamburger menu on smaller screens. I'll add ARIA labels to the nav for better screen reader support.
+
+The hero section should be eye-catching, so I'll use a grid layout with a gradient overlay on the background image. I'll ensure the text is readable with proper contrast and add a call-to-action button with hover effects for interactivity.
+
+Accessibility is crucial, so I'll include styles for focus states using CSS custom properties. I'll also add a skip navigation link to help users bypass repetitive content.
+
+Responsive design is a priority, so I'll use media queries to adjust layouts for different screen sizes. The navigation will switch to a vertical layout on mobile, and the hero content will stack to maintain readability.
+
+I'll incorporate CSS Grid for the features section to create a responsive and visually appealing layout. Each feature card will have a hover effect to enhance user interaction without relying on JavaScript.
+
+Performance optimization is important, so I'll use lazy loading for images and ensure all styles are optimized for quick loading. I'll also consider future enhancements like adding a dark mode using CSS variables and improving animations for a smoother user experience.
+
+Finally, I'll make sure the code is clean and well-commented, following best practices for maintainability. I'll test the design across different browsers to ensure compatibility and check for any accessibility issues using screen readers and SEO tools.
+
+By addressing each of these points, I can create a comprehensive and professional CSS file that meets all the user's requirements and adheres to modern web development standards.
+</think>
+
+```css
+/* styles/main.css */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2c3e50;
+  --secondary-color: #3498db;
+  --accent-color: #e74c3c;
+  --text-color: #333;
+  --background-color: #f9f9f9;
+  --font-primary: 'Inter', sans-serif;
+  --font-secondary: 'Segoe UI', system-ui, sans-serif;
+  --transition-timing: 0.3s ease-in-out;
+}
+
+/* Document */
+html {
+  lang: en;
+  scroll-behavior: smooth;
+}
+
+html:focus-within {
+  outline: 2px solid var(--primary-color);
+}
+
+body {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+
+/* Navigation */
+nav {
+  background-color: var(--primary-color);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color var(--transition-timing);
+}
+
+nav a:hover {
+  color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 4rem 0;
+  margin: 2rem 0;
+}
+
+.hero-content {
+  text-align: center;
+}
+
+/* Features Grid */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: transform var(--transition-timing);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+
+  nav {
+    padding: 0.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1;
+  height: 1;
+  padding: 0;
+  margin: -1;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem;
+  z-index: 100;
+}
+
+.skip-nav:focus {
+  top: 0;
+  outline: 2px solid white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Print Styles */
+@media print {
+  nav {
+    display: none;
+  }
+
+  .hero {
+    background: none;
+  }
+
+  .feature-card {
+    box-shadow: none;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color);
+}
+```
